@@ -1,0 +1,51 @@
+mat-card {
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative; // Necessario per il posizionamento assoluto dei badge
+
+    .poster-wrapper {
+        position: relative; // Contenitore per i badge
+
+        img {
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            display: block;
+            width: 100%;
+        }
+
+        // Stile per i badge (come mostrato nella traccia)
+        .badge {
+            position: absolute;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 2;
+
+            mat-icon {
+                font-size: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                align-content: center !important;
+                justify-content: center;
+            }
+
+            &.seen-badge {
+                top: 10px;
+                background-color: #2ecc71; // Verde come nell'immagine della traccia
+            }
+
+            &.favorite-badge {
+                top: 60px; // Posizionato sotto il badge "visto"
+                background-color: #f1c40f; // Oro/Giallo per la stella
+                color: black;
+            }
+        }
+    }
+}

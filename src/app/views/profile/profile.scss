@@ -1,0 +1,242 @@
+// profile.scss
+
+.profile-page {
+  min-height: 100%;
+}
+
+// ── Hero ──────────────────────────────────────────────────────────────────
+
+.hero-section {
+  position: relative;
+  padding: 48px 48px 36px;
+  overflow: hidden;
+  border-bottom: 1px solid color-mix(in srgb, var(--mat-sys-outline) 30%, transparent);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 100% at 60% -20%, 
+    color-mix(in srgb, var(--mat-sys-primary) 18%, transparent), 
+    transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--mat-sys-primary);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--mat-sys-primary) 15%, transparent);
+}
+
+.hero-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-name {
+  margin: 0 0 4px;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero-bio {
+  margin: 0 0 20px;
+  opacity: 0.65;
+  font-size: 0.95rem;
+}
+
+.stats-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--mat-sys-primary);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+// ── Content Grid (Form) ───────────────────────────────────────────────────
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 32px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.form-card {
+  border-radius: 16px !important;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.genre-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.save-feedback {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mat-sys-primary);
+  font-size: 0.9rem;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// ── Film Visti e Preferiti ────────────────────────────────
+
+.movies-lists-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 48px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.movies-list-card {
+  border-radius: 16px !important;
+  
+  mat-card-header {
+    margin-bottom: 16px;
+    
+    mat-icon[mat-card-avatar] {
+      background-color: color-mix(in srgb, var(--mat-sys-primary) 10%, transparent);
+      color: var(--mat-sys-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+  }
+}
+
+.horizontal-movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+// Stile per il singolo film (Movie Chip)
+.movie-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: color-mix(in srgb, var(--mat-sys-surface-variant) 50%, transparent);
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 12px;
+  padding: 6px 4px 6px 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  max-width: 260px;
+
+  &:hover {
+    background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+    transform: translateY(-2px);
+  }
+
+  img {
+    width: 36px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .movie-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}
+
+// Stato vuoto
+.empty-list-msg {
+  width: 100%;
+  padding: 24px;
+  text-align: center;
+  opacity: 0.45;
+  font-size: 0.95rem;
+  font-style: italic;
+  border: 1px dashed var(--mat-sys-outline-variant);
+  border-radius: 12px;
+}
+
+// ── Responsive ────────────────────────────────────────────────────────────
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 32px 20px 24px;
+  }
+  .content-grid, .movies-lists-container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}

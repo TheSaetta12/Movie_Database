@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <span routerLink="/">Movie Database</span>
+  <span class="spacer"></span>
+  <div class="toolbar-actions">
+    <button matIconButton (click)="theme.toggle()">
+      <mat-icon>{{ theme.isDarkMode() ? `dark_mode` : `light_mode`}}</mat-icon>
+    </button>
+
+    <!-- Navigazione a profilo -->
+     <button matIconButton routerLink="/profile">
+      <mat-icon>account_circle</mat-icon>
+     </button>
+  </div>
+</mat-toolbar>
+<router-outlet />

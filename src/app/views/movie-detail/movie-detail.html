@@ -1,0 +1,61 @@
+<div class="hero" [style.backgroundImage]="`url(https://image.tmdb.org/t/p/original` + movie.backdrop_path + `)`">
+    <button mat-icon-button class="back-btn">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="overlay">
+        <div class="detail-wrapper">
+            <img class="poster" [src]="`https://image.tmdb.org/t/p/w500` + movie.poster_path" />
+            <div class="info">
+                <h1>{{ movie.title }}</h1>
+                <p class="tagline">{{ movie.tagline }}</p>
+                <div class="chips">
+                    <mat-chip>{{ movie.release_date | date }}</mat-chip>
+                    <mat-chip>{{ movie.runtime }} min</mat-chip>
+                    <mat-chip>{{ movie.vote_average }}/10</mat-chip>
+
+                    @for(genere of movie.genres; track genere.id){
+                        <mat-chip>{{ genere.name }}</mat-chip>
+                    }
+                </div>
+
+                <p class="overview">
+                    {{ movie.overview }}
+                </p>
+
+                <div class="buttons">
+                    <button mat-raised-button color="accent" (click)="openTrailer()">
+                        <mat-icon>play_arrow</mat-icon> Guarda trailer
+                    </button>
+
+                    <!-- Pulsante Preferiti -->
+                    <button mat-flat-button 
+                            [color]="userService.isFavorite(movie.id) ? 'warn' : 'primary'" 
+                            (click)="toggleFavorite()">
+                        <mat-icon>{{ userService.isFavorite(movie.id) ? 'star' : 'star_border' }}</mat-icon>
+                        {{ userService.isFavorite(movie.id) ? 'Rimuovi dai preferiti' : 'Aggiungi ai preferiti' }}
+                    </button>
+
+                    <!-- Pulsante Visto -->
+                    <button mat-flat-button 
+                            [color]="userService.isSeen(movie.id) ? 'accent' : 'primary'" 
+                            (click)="toggleSeen()">
+                        <mat-icon>{{ userService.isSeen(movie.id) ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        {{ userService.isSeen(movie.id) ? 'Segna come non visto' : 'Segna come visto' }}
+                    </button>
+                </div>
+
+                <div class="cast-wrapper">
+                    <h3>Cast principale</h3>
+                    <div class="cast">
+                        @for(actor of movie.credits.cast.slice(0, 5); track actor.id){
+                            <div class="actor">
+                                <img [src]="`https://image.tmdb.org/t/p/w185` + actor.profile_path"/>
+                                 <span>{{ actor.name }}</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

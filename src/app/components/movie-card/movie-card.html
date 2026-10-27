@@ -1,0 +1,20 @@
+<mat-card (click)="movieClick()">
+    <div class="poster-wrapper">
+        <!-- Badge per film visto (Icona occhio) -->
+        @if (userService.isSeen(movieInput.id)) {
+          <div class="badge seen-badge">
+            <mat-icon>visibility</mat-icon>
+          </div>
+        }
+
+        <!-- Badge per film preferito (Icona stella) -->
+        @if (userService.isFavorite(movieInput.id)) {
+          <div class="badge favorite-badge">
+            <mat-icon>star</mat-icon>
+          </div>
+        }
+
+        <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + movieInput.poster_path"/>
+    </div>
+    <mat-card-title>{{movieInput.title}}</mat-card-title>
+</mat-card>
